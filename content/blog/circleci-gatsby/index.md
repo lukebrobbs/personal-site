@@ -3,10 +3,6 @@ title: Running tests in a pipeline with Gatsby and CircleCi
 date: "2019-05-01T22:12:03.284Z"
 ---
 
-# Running tests in a pipeline with Gatsby and CircleCi
-
----
-
 CI/CD is a huge part of modern day development, this guide shows how to set up a basic pipeline for a `Gatsby` project, running a set of unit tests using `CircleCi`.
 
 #### Create a new project

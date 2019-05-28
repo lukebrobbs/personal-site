@@ -31,7 +31,7 @@ The following is an extract from the Gatsby docs, as to how to configure Jest to
 
 As Gatsby handles its own [Babel](https://babeljs.io/docs/en/) configuration, we will need to manually tell Jest to use `babel-jest`. The easiest way to do this, is to create a `jest.config.js` file in the root of our project:
 
-```javascript
+```js
 //jest.config.js
 
 module.exports = {

@@ -81,7 +81,7 @@ const useAuth = () => {
     Auth0.logout({
       returnTo: window.location.origin,
     })
-    setExpiresAt(expires)
+    setExpiresAt(0)
   }
 
 // Lets us know if the logged in users session is still active
@@ -134,13 +134,16 @@ import React, { useContext } from "react"
 import { AuthContext } from "./AuthProvider.js"
 
 const Login = () => {
+  // React hook to access context
   const auth = useContext(AuthContext)
 
   return (
     <div>
       <button onClick={auth.login}>LOGIN</button>
-      {auth.isAuthenticated() && <p>You are logged in!</p>}
+      {auth.isAuthenticated() && <button onClick={auth.logout}>LOGOUT</button>}
     </div>
   )
 }
 ```
+
+This component will render a `LOGIN` button if the user is logged out, and `LOGOUT` if they are logged in. This pattern can be used throughout an application to create views for logged in / logged out users, and is made much simpler with context and hooks!

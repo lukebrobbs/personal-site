@@ -9,7 +9,7 @@ With the release of React hooks, creating auth flows has become much simpler. Th
 
 For this tutorial, we are going to be using [Auth0](https://auth0.com/). This handles authentication of users, as well as securely persisting users information. Go ahead and create an account, and create a new application, which will give you access to an `access_token`, and `id_token`.
 
-`Auth0` has a great `javaScript` SDK, which contains the methods we will need to handle authentication. Run the following command to install the SDK:
+`Auth0` has a great `javaScript` SDK, which contains the methods we will need to handle authentication. Navigate to the directory of your React application, and type the following command to install the SDK:
 
 ```bash
 npm install auth0-js
@@ -60,21 +60,6 @@ const useAuth = () => {
     }
   }
 
-
-  const renewSession = () => {
-    Auth0.checkSession({}, (err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        setSession(authResult)
-      } else if (err) {
-        logout()
-
-        alert(
-          `Could not get a new token (${err.error}: ${err.error_description}).`
-        )
-      }
-    })
-  }
-
 // Removes the current logged in user, as well as the
 // expiresAt from state
   const logout = () => {
@@ -106,9 +91,9 @@ Take some time to digest the above code, there is a lot going on! This hook will
 
 ## Context
 
-We now need to pass these methods to anywhere in our application that will need it. To do this, we will use the [React context API](https://reactjs.org/docs/context.html).
+We now need to pass the object provided by this hook to anywhere in our application that will need it. To do this, we will use the [React context API](https://reactjs.org/docs/context.html).
 
-This will essentially invole creating a React component, that will contain some state, which will be available to any of its child components that subscribe to it. The introduction of React's built in `useContext` hook, has made this API even easier to use than it was before.
+This will essentially invole creating a React context component, that will contain our Auth object, which will be available to any of its child components that subscribe to it. The introduction of React's built in `useContext` hook, has made this API even easier to use than it was before.
 
 We will need to create an `AuthProvider.js` file, with the following code:
 
@@ -130,7 +115,7 @@ export const AuthProvider = ({ children }) => {
 }
 ```
 
-To make `AuthContext` as widely available as possible, we need to wrap our application in our newly created `AuthProvider`. In our case, `App.js` is our top level component, so it makes sense to place `AuthProvider` here:
+To make `AuthContext` as widely available as possible, we need to wrap our application in our newly created `AuthProvider`. In this case, `App.js` is our top level component, so it makes sense to place `AuthProvider` there:
 
 ```javascript
 // App.js

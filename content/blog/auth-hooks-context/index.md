@@ -126,7 +126,25 @@ export const AuthProvider = ({ children }) => {
 }
 ```
 
-Our `AuthProvider` component is now available to any subscribed components. Lets go ahead and create a simple `Login` component to do this.
+To make `AuthContext` as widely available as possible, we need to wrap our application in our newly created `AuthProvider`. In our case, `App.js` is our top level component, so it makes sense to place `AuthProvider` here:
+
+```javascript
+// App.js
+import React from "react"
+import { AuthProvider } from "./AuthProvider"
+import Login from "./Login"
+
+const App = () => {
+  return (
+    <AuthProvider>
+      {/* children have access to Auth context */}
+      <Login />
+    </AuthProvider>
+  )
+}
+```
+
+Our `AuthProvider` has now made the Auth context available to any of its childrebn. Lets go ahead and create the `Login` component defined above, and access the Auth context using the `useContext` hook:
 
 ```javascript
 // Login.js
@@ -147,3 +165,10 @@ const Login = () => {
 ```
 
 This component will render a `LOGIN` button if the user is logged out, and `LOGOUT` if they are logged in. This pattern can be used throughout an application to create views for logged in / logged out users, and is made much simpler with context and hooks!
+
+The real power of the context API becomes more apparent as your application begins to grow. There is no need to pass `Auth` to any component as a prop, therefore eliminating any risk of confusion regarding prop drilling in the future.
+
+## Further reading
+
+- [Roles and permissions](https://auth0.com/docs/authorization/guides/manage-permissions)
+- [oauth](https://oauth.net/)

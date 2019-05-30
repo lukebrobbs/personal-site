@@ -102,7 +102,11 @@ const useAuth = () => {
 export default useAuth
 ```
 
-Take some time to digest the above code, there is a lot going on! This hook will allow us to initiate a login and logout flow for users on our application. We now need to pass these methods to anywhere in our application that will need it. To do this, we will use the [React context API](https://reactjs.org/docs/context.html).
+Take some time to digest the above code, there is a lot going on! This hook will allow us to initiate a login and logout flow for users on our application.
+
+## Context
+
+We now need to pass these methods to anywhere in our application that will need it. To do this, we will use the [React context API](https://reactjs.org/docs/context.html).
 
 This will essentially invole creating a React component, that will contain some state, which will be available to any of its child components that subscribe to it. The introduction of React's built in `useContext` hook, has made this API even easier to use than it was before.
 

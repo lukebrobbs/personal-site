@@ -1,0 +1,11 @@
+.nav__container {
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  text-decoration: none;
+}
+
+.nav__divider {
+  color: #007acc;
+  margin: 0 1em;
+}

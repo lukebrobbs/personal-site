@@ -16,7 +16,7 @@ function Bio() {
     <StaticQuery
       query={bioQuery}
       render={data => {
-        const { author, social } = data.site.siteMetadata
+        const { author, social, authorLocation } = data.site.siteMetadata
         return (
           <div
             style={{
@@ -30,18 +30,19 @@ function Bio() {
               style={{
                 marginRight: rhythm(1 / 2),
                 marginBottom: 0,
-                minWidth: 50,
+                minWidth: 60,
+                minHeight: 60,
                 borderRadius: `100%`,
+                border: "1px solid #007acc",
               }}
               imgStyle={{
                 borderRadius: `50%`,
               }}
             />
             <p>
-              Written by <strong>{author}</strong>, who lives and works in
-              Chesterfield building useful things for{" "}
-              <strong>Jaguar Landrover.</strong>
-              {` `}
+              Written by <strong>{author}</strong>, who works in
+              <span> {authorLocation} </span>
+              building useful things for <strong>Jaguar Landrover. </strong>
               <a href={`https://twitter.com/${social.twitter}`}>
                 You should follow him on Twitter
               </a>
@@ -68,6 +69,7 @@ const bioQuery = graphql`
         social {
           twitter
         }
+        authorLocation
       }
     }
   }

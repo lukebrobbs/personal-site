@@ -4,6 +4,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Nav from "../components/Nav"
+import { Project } from "../components/Project"
 
 class BlogIndex extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class BlogIndex extends React.Component {
         <SEO title="Portfolio" />
         <Bio />
         <Nav />
+        <Project />
       </Layout>
     )
   }

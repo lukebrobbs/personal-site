@@ -3,13 +3,14 @@ title: Typescript Generics
 date: 2019-10-13T23:00:00.000Z
 description: Generics in Typescript
 ---
+
 A major part of software engineering is building components that not only have well-defined and consistent APIs, but are also reusable. Generics in Typescript allow the creation of components that will work with multiple types.
 
 The most basic example using generics is an array. With Typescript, you are able to define the types that will fill the array:
 
 ```Typescript
 const strArr: string[] = ["one", "two", "three"];
-    
+
 strArr.push(1) // This would error
 ```
 
@@ -31,7 +32,7 @@ Here you can see, we are restricting to the array we can pass into `getLast` to 
 
 ```Typescript
 const getLast<T> = (arr T[]): T => {
-		return arr[arr.index - 1]; 
+        return arr[arr.index - 1];
 }
 ```
 
@@ -47,7 +48,7 @@ It is possible to use more than one type variable when creating a generic functi
 
 ```Typescript
 cont makeArr<X, Y> = (x: X, y: Y): [X, Y] => {
-	return [x, y];
+    return [x, y];
 }
 
 const v = makeArr<number, string>([1,'a']); // returns type ['number', 'string']
@@ -62,7 +63,7 @@ To do so, we’ll create an interface that describes our constraint. Here, we’
 
 ```Typescript
 interface WithLength {
-	length: number
+    length: number
 }
 
 function echo<T extends WithLength>(arg: T): T {
@@ -77,9 +78,9 @@ It is possible to use generics to create more flexible interfaces in our code. T
 
 ```Typescript
 interface HttpResponse<T> {
-	success: boolean
-	error?: string
-	data: T
+    success: boolean
+    error?: string
+    data: T
 }
 
 type StringResponse = HttpResponse<string>
@@ -89,13 +90,13 @@ The above could then be used in a function to allow more control over the return
 
 ```Typescript
 interface Person {
-	name: string
-	age: number
+    name: string
+    age: number
 }
 
 const makeRequest<T> = async() => {
-	const response = await // some logic
-	return response;
+    const response = await // some logic
+    return response;
 }
 
 const data = makeRequest<HttpResponse<Person>>() // resolves with data as a Person

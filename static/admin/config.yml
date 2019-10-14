@@ -14,6 +14,12 @@ collections:
     # editor:
     #   preview: false
     fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "blog",
+        }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Description", name: "description", widget: "string" }
@@ -26,6 +32,12 @@ collections:
     # editor:
     #   preview: false
     fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "project",
+        }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "URL", name: "url", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }

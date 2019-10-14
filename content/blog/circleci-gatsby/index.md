@@ -1,4 +1,5 @@
 ---
+templatekey: blog
 title: Running tests in a pipeline with Gatsby and CircleCi
 date: "2019-05-01T22:12:03.284Z"
 ---

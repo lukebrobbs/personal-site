@@ -1,4 +1,5 @@
 ---
+templatekey: blog
 title: Speeding up your flow with VS-Code Workspaces
 date: "2019-08-09T22:12:03.284Z"
 ---

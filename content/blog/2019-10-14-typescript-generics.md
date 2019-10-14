@@ -1,4 +1,5 @@
 ---
+templatekey: blog
 title: Typescript Generics
 date: 2019-10-13T23:00:00.000Z
 description: Generics in Typescript

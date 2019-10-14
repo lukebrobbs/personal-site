@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 import Nav from "../components/Nav"
 import { Project } from "../components/Project"
 
-class BlogIndex extends React.Component {
+class Portfolio extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
@@ -22,7 +22,7 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex
+export default Portfolio
 
 export const pageQuery = graphql`
   query {

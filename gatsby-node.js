@@ -19,6 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                templatekey
               }
             }
           }
@@ -31,7 +32,9 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges
+    const posts = result.data.allMarkdownRemark.edges.filter(
+      post => post.node.frontmatter.templatekey === "blog"
+    )
 
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node

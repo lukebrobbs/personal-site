@@ -8,6 +8,10 @@ export interface INotFoundPageProps extends PageRendererProps {
   data: IMetaData
 }
 
+export interface IPortfolioProps extends PageRendererProps {
+  data: IMetaData
+}
+
 interface IMetaData {
   site: {
     siteMetadata: {
@@ -27,7 +31,10 @@ interface IMarkdownRemark {
         frontmatter: {
           date: string
           title: string
-          description?: string
+          description: string
+          image: string
+          templatekey: string
+          url: string
         }
       }
     }[]

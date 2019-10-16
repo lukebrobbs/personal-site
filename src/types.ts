@@ -1,7 +1,7 @@
 import { PageRendererProps } from "gatsby"
 
 export interface IBlogIndexProps extends PageRendererProps {
-  data: IMetaData & IMarkdownRemark
+  data: IMetaData & IMarkdownRemarks
 }
 
 export interface INotFoundPageProps extends PageRendererProps {
@@ -12,6 +12,17 @@ export interface IPortfolioProps extends PageRendererProps {
   data: IMetaData
 }
 
+export interface IBlogPostTemplateProps extends PageRendererProps {
+  data: IMetaData & { markdownRemark: IMarkdownRemark }
+  pageContext: IPageContext
+}
+
+interface IPageContext {
+  slug: string
+  previous: IMarkdownRemark
+  next: IMarkdownRemark
+}
+
 interface IMetaData {
   site: {
     siteMetadata: {
@@ -20,23 +31,27 @@ interface IMetaData {
   }
 }
 
-interface IMarkdownRemark {
+interface IMarkdownRemarks {
   allMarkdownRemark: {
     edges: {
-      node: {
-        excerpt: string
-        fields: {
-          slug: string
-        }
-        frontmatter: {
-          date: string
-          title: string
-          description: string
-          image: string
-          templatekey: string
-          url: string
-        }
-      }
+      node: IMarkdownRemark
     }[]
+  }
+}
+
+interface IMarkdownRemark {
+  id: string
+  html: string
+  excerpt: string
+  fields: {
+    slug: string
+  }
+  frontmatter: {
+    date: string
+    title: string
+    description: string
+    image: string
+    templatekey: string
+    url: string
   }
 }

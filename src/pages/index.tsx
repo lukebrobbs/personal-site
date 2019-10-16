@@ -17,30 +17,28 @@ const BlogIndex: FunctionComponent<IBlogIndexProps> = ({ data, location }) => {
       <SEO title="All posts" />
       <Bio />
       <Nav />
-      {posts
-        .filter(post => post.node.frontmatter.templatekey === "blog")
-        .map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </div>
-          )
-        })}
+      {posts.map(({ node }) => {
+        const title = node.frontmatter.title || node.fields.slug
+        return (
+          <div key={node.fields.slug}>
+            <h3
+              style={{
+                marginBottom: rhythm(1 / 4),
+              }}
+            >
+              <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                {title}
+              </Link>
+            </h3>
+            <small>{node.frontmatter.date}</small>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: node.frontmatter.description || node.excerpt,
+              }}
+            />
+          </div>
+        )
+      })}
     </Layout>
   )
 }
@@ -54,7 +52,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { templatekey: { eq: "blog" } } }
+    ) {
       edges {
         node {
           excerpt

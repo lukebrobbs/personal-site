@@ -17,6 +17,10 @@ export interface IBlogPostTemplateProps extends PageRendererProps {
   pageContext: IPageContext
 }
 
+export interface ILayoutProps extends PageRendererProps {
+  title: string
+}
+
 interface IPageContext {
   slug: string
   previous: IMarkdownRemark

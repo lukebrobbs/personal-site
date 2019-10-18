@@ -9,7 +9,7 @@ export interface INotFoundPageProps extends PageRendererProps {
 }
 
 export interface IPortfolioProps extends PageRendererProps {
-  data: IMetaData
+  data: IMetaData & IMarkdownRemarks
 }
 
 export interface IBlogPostTemplateProps extends PageRendererProps {
@@ -43,6 +43,15 @@ interface IMarkdownRemarks {
   }
 }
 
+export interface IFrontMatter {
+  date: string
+  title: string
+  description: string
+  image: string
+  templatekey: string
+  url: string
+}
+
 interface IMarkdownRemark {
   id: string
   html: string
@@ -50,12 +59,5 @@ interface IMarkdownRemark {
   fields: {
     slug: string
   }
-  frontmatter: {
-    date: string
-    title: string
-    description: string
-    image: string
-    templatekey: string
-    url: string
-  }
+  frontmatter: IFrontMatter
 }

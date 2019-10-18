@@ -16,7 +16,11 @@ const Portfolio: FunctionComponent<IPortfolioProps> = ({ data, location }) => {
       <SEO title="Portfolio" />
       <Bio />
       <Nav />
-      <Project />
+      <section style={{ marginBottom: "3.5em" }}>
+        {data.allMarkdownRemark.edges.map(project => {
+          return <Project {...project.node.frontmatter} />
+        })}
+      </section>
     </Layout>
   )
 }
@@ -24,10 +28,24 @@ const Portfolio: FunctionComponent<IPortfolioProps> = ({ data, location }) => {
 export default Portfolio
 
 export const pageQuery = graphql`
-  query {
+  query Portfolio {
     site {
       siteMetadata {
         title
+      }
+    }
+    allMarkdownRemark(
+      filter: { frontmatter: { templatekey: { eq: "project" } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            url
+            image
+            description
+            title
+          }
+        }
       }
     }
   }
